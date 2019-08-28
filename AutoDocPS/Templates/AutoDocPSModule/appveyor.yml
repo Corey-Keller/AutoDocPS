@@ -37,8 +37,8 @@ skip_commits:
 # build cache to preserve files/folders between builds
 cache:
   - _build-cache -> *.depend.psd1
-  - '%USERPROFILE%\Documents\WindowsPowerShell\Modules' -> *.depend.psd1
-  - '%USERPROFILE%\Documents\PowerShell\Modules' -> *.depend.psd1
+  - '%USERPROFILE%\Documents\WindowsPowerShell\Modules'
+  - '%USERPROFILE%\Documents\PowerShell\Modules'
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
   - C:\ProgramData\chocolatey\bin -> appveyor.yml
 
