@@ -8,8 +8,7 @@ Properties {
     }
     $ModuleFolder = Split-Path -Path $ENV:BHPSModuleManifest -Parent
     $PSVersion = $PSVersionTable.PSVersion.Major
-    $ISO8601UTCStamp = $(get-date).ToUniversalTime() | Get-date -UFormat "%Y-%m-%dT%H.%M.%SZ"
-    $TestFile = "TestResults_PS$PSVersion`_$ISO8601UTCStamp.xml"
+    $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
     $lines = '----------------------------------------------------------------------'
     $Verbose = @{ }
     if ($ENV:BHCommitMessage -match "!verbose") {
@@ -43,7 +42,7 @@ Task Init {
 Task UnitTests -Depends Init {
     $lines
     "Running Pre-build unit tests`n"
-    $Timestamp = Get-date -uformat "%Y%m%d-%H%M%S"
+    $Timestamp = $(get-date).ToUniversalTime() | Get-date -UFormat "%Y-%m-%dT%H.%M.%SZ"
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
     $Parameters = @{
         Script = "$ProjectRoot\Tests"
@@ -162,7 +161,7 @@ Task Test -Depends Build  {
     "`n`tSTATUS: Testing with PowerShell $PSVersion"
     
     # Gather test results. Store them in a variable and file
-    $Timestamp = Get-date -uformat "%Y%m%d-%H%M%S"
+    $Timestamp = $(get-date).ToUniversalTime() | Get-date -UFormat "%Y-%m-%dT%H.%M.%SZ"
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
     $parameters = @{
         Script = "$ProjectRoot\Tests"
