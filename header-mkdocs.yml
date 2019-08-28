@@ -1,0 +1,12 @@
+site_name: AutoDocPS
+repo_url: https://github.com/Corey-Keller/AutoDocPS
+site_author: Corey Keller
+edit_uri: edit/master/docs/
+theme: readthedocs
+copyright: "AutoDocPS is licensed under the <a href='https://github.com/Corey-Keller/AutoDocPS/raw/master/LICENSE'>AGPL license"
+pages:
+  - Home: index.md
+  - AutoDocPS Basics:
+    - What is AutoDocPS?: about.md
+    - Quick Start: Quick-Start-Installation-and-Example.md
+  - Acknowledgements: acknowledgements.md
