@@ -8,7 +8,7 @@ $PSDependLoadAttempts = 0
 $loadedPSDepend = $false
 do {
   try {
-    Import-Module -Name PSDepend -RequiredVersion "0.3.1" -Force
+    Import-Module -Name PSDepend -RequiredVersion "0.3.1" -Force -ErrorAction Stop
     if (Get-Command Invoke-PSDepend){
           $loadedPSDepend = $true
       }
