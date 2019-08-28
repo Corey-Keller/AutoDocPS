@@ -1,0 +1,15 @@
+site_name: <%=$PLASTER_PARAM_ModuleName%>
+repo_url: https://<%=$PLASTER_PARAM_GitHubDomain%>/<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_ModuleName%>
+site_author: <%=$PLASTER_PARAM_FullName%>
+edit_uri: edit/master/docs/
+theme: readthedocs
+<%
+if ($PLASTER_PARAM_License -ne "None") {
+"copyright: `"$PLASTER_PARAM_ModuleName is licensed under the <a href='https://$PLASTER_PARAM_GitHubDomain/$PLASTER_PARAM_GitHubUserName/$PLASTER_PARAM_ModuleName/raw/master/LICENSE'>$PLASTER_PARAM_License license`""
+}
+%>pages:
+  - Home: index.md
+  - <%=$PLASTER_PARAM_ModuleName%> Basics:
+    - What is <%=$PLASTER_PARAM_ModuleName%>?: about.md
+    - Quick Start: Quick-Start-Installation-and-Example.md
+  - Acknowledgments: acknowledgments.mdo

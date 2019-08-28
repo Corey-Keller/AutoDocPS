@@ -1,0 +1,50 @@
+# See http://www.appveyor.com/docs/appveyor-yml for many more options
+
+# GitVersion Stuff
+install:
+  - choco upgrade gitversion.portable -pre -y
+
+before_build:
+  - nuget restore
+  - ps: gitversion /l console /output buildserver /updateAssemblyInfo
+
+# Build worker image (VM template)
+image: Visual Studio 2017
+
+# clone directory
+clone_folder: C:\MyProjects\AutoDocPS
+
+environment:
+  matrix:
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    PowerShellEdition: PowerShellCore
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    PowerShellEdition: WindowsPowerShell
+
+  NugetApiKey:
+    secure: SDpxSFw0XVd2euHu9IZuYbxz8fXaRf6drEVlDc0u5iGJmonpBbRkIXkeyW3CvyA3
+  access_token:
+    secure: LteZRu3lMw2hw+kzXHqihiuUuyYMBx1SrSI0fv00dsPH0JuGOdRM0f2JP0Tm7Ju9
+
+# Allow WMF5 (i.e. PowerShellGallery functionality)
+os: WMF 5
+
+# Skip on updates to the readme.
+# We can force this by adding [skip ci] or [ci skip] anywhere in commit message 
+skip_commits:
+  message: /updated (readme|doc).*|update (readme|doc).*s/
+
+# build cache to preserve files/folders between builds
+cache:
+  - _build-cache -> *.depend.psd1
+  - '%USERPROFILE%\Documents\WindowsPowerShell\Modules' -> *.depend.psd1
+  - '%USERPROFILE%\Documents\PowerShell\Modules' -> *.depend.psd1
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+
+build: false
+
+#Kick off the CI/CD pipeline
+test_script:
+  - ps: . .\build.ps1
+  - pwsh: . .\build.ps1

@@ -1,0 +1,57 @@
+
+### PowerShell ###
+# Exclude packaged modules
+*.zip
+
+# Exclude .NET assemblies from source
+*.dll
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# PowerShell Studio Build Files
+*.psproj
+*.psprojs
+*.psbuild
+*.preview.ps1
+*.run.ps1
+*.temppoint.*
+*.RestorePoint.*
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Folder config file
+[Dd]esktop.ini
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Windows image file caches
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+
+# Don't check in the output or _build-cache dirs
+/output/
+/_build-cache/
+
+# Pester Test Result files
+TestResults_PS[1-9]_20[1-9][0-9]-[0-1][0-9]-[0-3][0-9]T[0-2][0-9].[0-5][0-9].[0-5][0-9]Z.xml

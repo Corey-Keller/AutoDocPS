@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest
+  schemaVersion="1.1"
+  templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>AutoDocPSModule</name>
+    <id>22448b40-b966-4cd6-8b9c-d87521a74698</id>
+    <version>1.0.0</version>
+    <title>Auto-Documenting Module Plaster Template</title>
+    <description>AutoDocPSModule is template that will build a PowerShell module that will update documentation from comment-based help on build.</description>
+    <author>Corey Keller</author>
+    <tags>Module, PowerShell</tags>
+  </metadata>
+  <parameters>
+    <!-- Module Info -->
+    <parameter name="ModuleName"
+               type="text"
+               prompt="Enter the name of the module"/>
+
+    <parameter name="ModuleDescription"
+               type="text"
+               prompt="Enter a description of the module"/>
+
+    <parameter name="Version"
+               type="text"
+               default="0.1.0"
+               prompt="Enter the version number (1.2.3) for the module"/>
+
+    <!-- User Details -->
+    <parameter name="FullName"
+               type="user-fullname"
+               store="text"
+               prompt="Enter your full name"/>
+
+    <parameter name="PSGalleryAPIKey"
+               type="text"
+               store="text"
+               prompt="Enter your AppVeyor encrypted PowerShell Gallery API Key"/>
+
+    <parameter name="GitAccessToken"
+               type="text"
+               store="text"
+               prompt="Enter your AppVeyor encrypted GitHub Access Token"/>
+
+    <parameter name="GitHubRepo" 
+               type="text"
+               default="${PLASTER_PARAM_ModuleName}"
+               prompt="Enter the GitHub repo name for this module"/>
+
+    <parameter name="GitHubUserName"
+               type="user-fullname"
+               default="${PLASTER_PARAM_FullName}"
+               store="text"
+               prompt="Enter your GitHub username"/>
+
+    <parameter name="GitHubDomain" 
+               type="text"
+               default="github.com"
+               store="text"
+               prompt="Enter the GitHub domain this project will be hosted on"/>
+
+    <!-- Licensing -->
+    <parameter name="License"
+               type="choice"
+               default="5"
+               store="text"
+               prompt="Select a license for your module">
+      <choice label="&amp;AGPL"
+              help="Adds an AGPL license file."
+              value="AGPL"/>
+      <choice label="A&amp;pache"
+              help="Adds an Apache license file."
+              value="Apache"/>
+      <choice label="&amp;GPL"
+              help="Adds a GPL license file."
+              value="GPL"/>
+      <choice label="&amp;MIT"
+              help="Adds an MIT license file."
+              value="MIT"/>
+      <choice label="Mo&amp;zilla"
+              help="Adds a Mozilla license file."
+              value="Mozilla"/>
+      <choice label="&amp;None"
+              help="No license specified."
+              value="None"/>
+    </parameter>
+  </parameters>
+  <content>
+    <message>Setting up your project</message>
+    <newModuleManifest destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1'
+                       moduleVersion='$PLASTER_PARAM_ModuleVersion'
+                       rootModule='${PLASTER_PARAM_ModuleName}.psm1'
+                       author='$PLASTER_PARAM_FullName'
+                       description='$PLASTER_PARAM_ModuleDescription'/>
+    <templateFile source='ModuleName\ModuleName.psm1'
+                  destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
+    <templateFile source='ModuleName\Public\Verb-Noun.ps1'
+                  destination='${PLASTER_PARAM_ModuleName}\Public\Verb-Noun.ps1'/>
+    <templateFile source='ModuleName\Private\Verb-Noun.ps1'
+                  destination='${PLASTER_PARAM_ModuleName}\Private\Verb-Noun.ps1'/>
+    <templateFile source='appveyor.yml'
+                  destination='appveyor.yml'/>
+    <templateFile source='header-mkdocs.yml'
+                  destination='header-mkdocs.yml'/>
+    <templateFile source='README.md'
+                  destination='README.md'/>
+    <templateFile source='CHANGELOG.md'
+                  destination='CHANGELOG.md'/>
+    <templateFile source='docs\index.md'
+                  destination='docs\index.md'/>
+    <templateFile source='license\AGPL.txt'
+                  destination='LICENSE'
+                  condition="$PLASTER_PARAM_License -eq 'AGPL'"/>
+    <templateFile source='license\Apache.txt'
+                  destination='LICENSE'
+                  condition="$PLASTER_PARAM_License -eq 'Apache'"/>
+    <templateFile source='license\GPL.txt'
+                  destination='LICENSE'
+                  condition="$PLASTER_PARAM_License -eq 'GPL'"/>
+    <templateFile source='license\MIT.txt'
+                  destination='LICENSE'
+                  condition="$PLASTER_PARAM_License -eq 'MIT'"/>
+    <templateFile source='license\Mozilla.txt'
+                  destination='LICENSE'
+                  condition="$PLASTER_PARAM_License -eq 'Mozilla'"/>
+    <file source='.gitignore'
+          destination='.gitignore'/>
+    <file source='build.depend.psd1'
+          destination='build.depend.psd1'/>
+    <file source='build.ps1'
+          destination='build.ps1'/>
+    <file source='psake.ps1'
+          destination='psake.ps1'/>
+    <file source='deploy.PSDeploy.ps1'
+          destination='deploy.PSDeploy.ps1'/>
+    <file source='GitVersion.yml'
+          destination='GitVersion.yml'/>
+    <file source='tests\**'
+          destination='tests'/>
+  </content>
+</plasterManifest>
