@@ -9,17 +9,17 @@ before_build:
   - ps: gitversion /l console /output buildserver /updateAssemblyInfo
 
 # Build worker image (VM template)
-image: Visual Studio 2017
+image: Visual Studio 2019
 
 # clone directory
 clone_folder: C:\MyProjects\AutoDocPS
 
 environment:
-  matrix:
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    PowerShellEdition: PowerShellCore
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    PowerShellEdition: WindowsPowerShell
+#  matrix:
+#  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+#    PowerShellEdition: PowerShellCore
+#  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+#    PowerShellEdition: WindowsPowerShell
 
   NugetApiKey:
     secure: SDpxSFw0XVd2euHu9IZuYbxz8fXaRf6drEVlDc0u5iGJmonpBbRkIXkeyW3CvyA3
@@ -36,7 +36,6 @@ skip_commits:
 
 # build cache to preserve files/folders between builds
 cache:
-  - _build-cache -> *.depend.psd1
   - '%USERPROFILE%\Documents\WindowsPowerShell\Modules'
   - '%USERPROFILE%\Documents\PowerShell\Modules'
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
@@ -47,4 +46,4 @@ build: false
 #Kick off the CI/CD pipeline
 test_script:
   - ps: . .\build.ps1
-  - pwsh: . .\build.ps1
+#  - pwsh: . .\build.ps1
