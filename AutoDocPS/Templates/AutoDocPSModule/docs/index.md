@@ -1,4 +1,5 @@
 # <%=$PLASTER_PARAM_ModuleName%>
+[![master branch status](https://ci.appveyor.com/api/projects/status/github/develop<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_GitHubRepo%>?svg=true&branch=master&passingText=master%20-%20PASS&pendingText=master%20-%20PEND&failingText=master%20-%20FAIL)](https://ci.appveyor.com/project/<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_GitHubRepo%>/branch/master) [![develop branch status](https://ci.appveyor.com/api/projects/status/github/develop<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_GitHubRepo%>?svg=true&branch=develop&passingText=develop%20-%20PASS&pendingText=develop%20-%20PEND&failingText=develop%20-%20FAIL)](https://ci.appveyor.com/project/<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_GitHubRepo%>/branch/develop) [![Documentation Status](https://readthedocs.org/projects/<%=$PLASTER_PARAM_GitHubRepo%>/badge/?version=latest)](https://<%=$PLASTER_PARAM_GitHubRepo%>.readthedocs.io/en/latest/?badge=latest)
 
 <%=$PLASTER_PARAM_ModuleDescription%>
 
