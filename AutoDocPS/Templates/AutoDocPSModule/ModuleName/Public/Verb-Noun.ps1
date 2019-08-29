@@ -35,13 +35,13 @@ function Verb-Noun
   .NOTES
     General notes
   .LINK
-    https://<%=$PLASTER_PARAM_GitHubDomain%>/<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_ModuleName%>/blob/master/<%=$PLASTER_PARAM_ModuleName%>/Public/Verb-Noun.ps1
+    https://<%=$PLASTER_PARAM_GitHubDomain%>/<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_GitHubRepo%>/blob/master/<%=$PLASTER_PARAM_ModuleName%>/Public/Verb-Noun.ps1
   #>
   [CmdletBinding(
     DefaultParameterSetName='DefaultParamSet',
     SupportsShouldProcess=$true,
     PositionalBinding=$false,
-    HelpUri = "https://<%=$PLASTER_PARAM_GitHubDomain%>/<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_ModuleName%>/blob/master/<%=$PLASTER_PARAM_ModuleName%>/Public/Verb-Noun.ps1",
+    HelpUri = "https://<%=$PLASTER_PARAM_GitHubDomain%>/<%=$PLASTER_PARAM_GitHubUserName%>/<%=$PLASTER_PARAM_GitHubRepo%>/blob/master/<%=$PLASTER_PARAM_ModuleName%>/Public/Verb-Noun.ps1",
     ConfirmImpact='Medium'
   )]
   Param
