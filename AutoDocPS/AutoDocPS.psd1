@@ -12,7 +12,7 @@
 RootModule = 'AutoDocPS.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.2.6'
+ModuleVersion = '0.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()

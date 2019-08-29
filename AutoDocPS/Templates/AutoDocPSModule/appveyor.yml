@@ -15,11 +15,11 @@ image: Visual Studio 2017
 clone_folder: C:\MyProjects\<%=$PLASTER_PARAM_ModuleName%>
 
 environment:
-  matrix:
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    PowerShellEdition: PowerShellCore
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    PowerShellEdition: WindowsPowerShell
+#  matrix:
+#  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+#    PowerShellEdition: PowerShellCore
+#  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+#    PowerShellEdition: WindowsPowerShell
 
   NugetApiKey:
     secure: <%=$PLASTER_PARAM_PSGalleryAPIKey%>
@@ -36,7 +36,10 @@ skip_commits:
 
 # build cache to preserve files/folders between builds
 cache:
+<<<<<<< HEAD
+=======
   - _build-cache -> *.depend.psd1
+>>>>>>> 6bc0a44a5a457f14e95873fff0baed98489139a7
   - '%USERPROFILE%\Documents\WindowsPowerShell\Modules'
   - '%USERPROFILE%\Documents\PowerShell\Modules'
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
@@ -47,4 +50,4 @@ build: false
 #Kick off the CI/CD pipeline
 test_script:
   - ps: . .\build.ps1
-  - pwsh: . .\build.ps1
+#  - pwsh: . .\build.ps1
