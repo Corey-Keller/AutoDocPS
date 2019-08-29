@@ -42,7 +42,7 @@ Task Init {
 Task UnitTests -Depends Init {
     $lines
     "Running Pre-build unit tests`n"
-    $Timestamp = Get-date -uformat "%Y%m%d-%H%M%S"
+    $Timestamp = $(get-date).ToUniversalTime() | Get-date -UFormat "%Y-%m-%dT%H.%M.%SZ"
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
     $Parameters = @{
         Script = "$ProjectRoot\Tests"
@@ -107,7 +107,7 @@ Task Build -Depends UnitTests {
     #$NestedModules = Get-ChildItem @Parameters |
     #    Where-Object { $_.Name -notmatch '\.tests{0,1}\.ps1' } |
     #    ForEach-Object { $_.fullname.replace("$ModuleFolder\", "") }
-    #
+#
     #try {
     #    # This will error if NestedModules has been commented out
     #    Get-Metadata -Path $env:BHPSModuleManifest -PropertyName NestedModules
@@ -117,7 +117,7 @@ Task Build -Depends UnitTests {
     #    # (should) ALWAYS exist and be valid. Then it can be updated as normal 
     #    Update-modulemanifest -Path $env:BHPSModuleManifest -NestedModules @(".\$([io.path]::GetFileNameWithoutExtension($env:BHPSModuleManifest)).psm1")
     #}
-    #
+#
     #if ($NestedModules.Length -gt 0) {
     #    Update-Metadata -Path $env:BHPSModuleManifest -PropertyName NestedModules -Value $NestedModules
     #}
@@ -135,7 +135,7 @@ Task Build -Depends UnitTests {
     }
     $ReleaseText = (Get-Content @parameters | Where-Object {$_ -notmatch '^# Version '}) -join "`r`n"
     if (-not $ReleaseText) {
-        "Skipping realse notes`n"
+        "Skipping release notes`n"
         "Consider adding a RELEASE.md to your project.`n"
         return
     }
@@ -161,7 +161,7 @@ Task Test -Depends Build  {
     "`n`tSTATUS: Testing with PowerShell $PSVersion"
     
     # Gather test results. Store them in a variable and file
-    $Timestamp = Get-date -uformat "%Y%m%d-%H%M%S"
+    $Timestamp = $(get-date).ToUniversalTime() | Get-date -UFormat "%Y-%m-%dT%H.%M.%SZ"
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
     $parameters = @{
         Script = "$ProjectRoot\Tests"
