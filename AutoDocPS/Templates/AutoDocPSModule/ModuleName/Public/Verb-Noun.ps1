@@ -8,7 +8,7 @@
 if ($PLASTER_PARAM_License -ne "None") {
   "# Copyright (c) $PLASTER_YEAR $PLASTER_PARAM_FullName
 #"
-"$(Get-Content -Raw -LiteralPath $PLASTER_TemplatePath\license\$PLASTER_PARAM_License.FileNotice.txt)"
+$(Get-Content -Raw -LiteralPath "$PLASTER_TemplatePath\license\$PLASTER_PARAM_License.FileNotice.txt")
 }
 else {
   "#"

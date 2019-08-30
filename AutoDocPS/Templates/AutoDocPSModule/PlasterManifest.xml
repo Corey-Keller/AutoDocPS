@@ -66,20 +66,20 @@
                store="text"
                prompt="Select a license for your module">
       <choice label="&amp;AGPL"
-              help="Adds an AGPL license file."
-              value="AGPL"/>
+              help="Adds a `&quot;GNU Affero General Public License`&quot; LICENSE file."
+              value="GNU Affero General Public License"/>
       <choice label="A&amp;pache"
-              help="Adds an Apache license file."
-              value="Apache"/>
+              help="Adds an `&quot;Apache License`&quot; file."
+              value="Apache License"/>
       <choice label="&amp;GPL"
-              help="Adds a GPL license file."
-              value="GPL"/>
+              help="Adds a `&quot;GNU General Public License`&quot; LICENSE file."
+              value="GNU General Public License"/>
       <choice label="&amp;MIT"
-              help="Adds an MIT license file."
-              value="MIT"/>
+              help="Adds an `&quot;MIT License`&quot; LICENSE file."
+              value="MIT License"/>
       <choice label="Mo&amp;zilla"
-              help="Adds a Mozilla license file."
-              value="Mozilla"/>
+              help="Adds a `&quot;Mozilla Public License`&quot; LICENSE file."
+              value="Mozilla Public License"/>
       <choice label="&amp;None"
               help="No license specified."
               value="None"/>
@@ -87,11 +87,8 @@
   </parameters>
   <content>
     <message>Setting up your project</message>
-    <newModuleManifest destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1'
-                       moduleVersion='$PLASTER_PARAM_ModuleVersion'
-                       rootModule='${PLASTER_PARAM_ModuleName}.psm1'
-                       author='$PLASTER_PARAM_FullName'
-                       description='$PLASTER_PARAM_ModuleDescription'/>
+    <templateFile source='ModuleName\ModuleName.psd1'
+                  destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1'/>
     <templateFile source='ModuleName\ModuleName.psm1'
                   destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
     <templateFile source='ModuleName\Public\Verb-Noun.ps1'
